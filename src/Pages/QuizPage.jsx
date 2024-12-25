@@ -1,10 +1,10 @@
 import React from 'react'
-import Checkbox from '../Components/FormComponents/Checkbox'
-import LongAnswer from '../Components/FormComponents/LongAnswer'
-import ShortAnswer from '../Components/FormComponents/ShortAnswer'
-import Radio from '../Components/FormComponents/Radio'
-import Navbar from '../Components/Navbar'
-import Contact from '../Components/Contact'
+import Checkbox from '../components/FormComponents/Checkbox'
+import LongAnswer from '../components/FormComponents/LongAnswer'
+import ShortAnswer from '../components/FormComponents/ShortAnswer'
+import Radio from '../components/FormComponents/Radio'
+import Navbar from '../components/Navbar'
+import Contact from '../components/Contact'
 
 const QuizPage = () => {
   return (
