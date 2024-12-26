@@ -1,7 +1,7 @@
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Card from './DomainCards';
+
 import ProjectCard from './ProjectCard';
 
 
