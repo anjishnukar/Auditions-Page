@@ -1,5 +1,6 @@
 import React from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import { radialGradient } from 'framer-motion/client';
 
 // const Hero = () => {
 //   return (
@@ -26,14 +27,16 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 const Hero = () => {
   return (
+    
     <div
       id="Home"
-      className="h-screen w-screen bg-gray-900 text-gray-300 flex flex-col md:flex-row px-5"
+      className=" h-screen w-screen bg-gray-900 text-gray-300 flex flex-col md:flex-row sm:justify-center sm:items-center py-24 md:py-5"
     >
+      <div className='h-screen md:h-24 bg-gray-900'></div>
       <div className="flex flex-col justify-center items-center text-center w-full md:w-[50%] order-1">
-        <div className="text-gray-500 font-shadows -rotate-12 mb-2">
+        {/* <div className="text-gray-500 font-shadows -rotate-12 mb-2">
           *trumpets blowing*
-        </div>
+        </div> */}
         <div className="text-5xl md:text-9xl font-anton mb-5">
           Welcome to{" "}
           <span className="bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">

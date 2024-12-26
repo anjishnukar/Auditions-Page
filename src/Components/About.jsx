@@ -3,15 +3,15 @@ import { motion } from 'motion/react'
 
 const About = () => {
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
+    <div className='min-h-screen flex flex-col md:flex-row py-5'>
       <div className='bg-gray-900 w-full md:w-1/2 order-2 md:order-1'><Typewriter/></div>
-      <div id='About' className='right-0 min-h-screen md:w-1/2 flex flex-col bg-gray-900 text-gray-300 px-10 items-end justify-start text-end order-1 md:order-2'>
-        <div className='font-anton top-0 text-9xl py-10'>About Us</div>
-        <div className='font-agudisplay text-3xl md:text-5xl'>We are a vibrant community of hardworking individuals who would like to see an increase in interest of entreprenurship 
+      <div id='About' className='right-0 min-h-screen md:w-1/2 flex flex-col bg-gray-950 rounded-3xl text-gray-300 px-10 items-end justify-start text-center order-1 md:order-2'>
+        <div className='font-anton top-0 text-6xl md:text-9xl py-10 text-center'>About Us</div>
+        <div className='font-raleway text-xl md:text-5xl'>We are a vibrant community of hardworking individuals who would like to see an increase in interest of entreprenurship 
           among the students of NIT Durgapur. We organise the second-largest entrepreneurship fest in eastern India and host events 
-          like <span className='relative'>Bizcup<svg viewBox="0 0 300 85" fill="none" className='absolute -top-2 translate-y-5 bottom-10 -left-4 -right-2'>
+          like <span className='relative'>Bizcup<svg viewBox="0 0 300 85" fill="none" className='absolute -top-6 md:-top-5 translate-y-5 bottom-10 -left-4 -right-2'>
         <motion.path initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{duration:1.25, ease: "easeInOut"}} d="M242 1C191.333 1.66667 87 19 64 24C38.3503 29.576 -30 52 19 72C58.2 88 197.333 83.3333 262 79C277.667 79 306.4 72.6 296 47C283 15 262 26 191 16C120 6 71 7 64 7" stroke="white" stroke-width="5"/>
-        </svg></span> and <span className='relative'>HultPrize<svg viewBox="0 0 300 85" fill="none" className='absolute -top-3 translate-y-3 bottom-10 -left-4 -right-2'>
+        </svg></span> and <span className='relative'>HultPrize<svg viewBox="0 0 300 85" fill="none" className='absolute -top-5 md:-top-7 translate-y-3 bottom-10 -left-4 -right-2'>
         <motion.path initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{duration:1.25, ease: 'easeInOut'}} d="M242 1C191.333 1.66667 87 19 64 24C38.3503 29.576 -30 52 19 72C58.2 88 197.333 83.3333 262 79C277.667 79 306.4 72.6 296 47C283 15 262 26 191 16C120 6 71 7 64 7" stroke="white" stroke-width="5"/>
         </svg></span> throughout the year</div>
       </div>

@@ -1,6 +1,8 @@
 import React from 'react'
 import LandingPage from './Pages/LandingPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import QuizPage from './Pages/QuizPage'
+import Login from './Components/Login'
 
 function App() {
   const router = createBrowserRouter([
@@ -8,6 +10,14 @@ function App() {
       path:'/',
       element: <LandingPage/>
     },
+    {
+      path: '/quiz',
+      element: <QuizPage/>
+    },
+    {
+      path: '/login',
+      element: <Login/>
+    }
   ])
   return(
     <>

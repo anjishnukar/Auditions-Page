@@ -6,13 +6,15 @@ const STAGGER = 0.025;
 
 const Contact = () => {
   return (
-    <div id='Contact' className='bg-gray-700 h-96 text-gray-300'>
+    <div id='Contact' className='flex flex-col bg-gray-700 h-96 text-gray-300 px-5'>
       <div className='font-anton text-7xl p-6'>Contact</div>
-      <div>
-        <FlipLink href="#">Twitter</FlipLink>
-        <FlipLink href="#">Linkedin</FlipLink>
-        <FlipLink href="#">Facebook</FlipLink>
-        <FlipLink href="#">Instagram</FlipLink>
+      <div className='flex flex-row'>
+        <div className='flex flex-col'>
+          <FlipLink href="#">Twitter</FlipLink>
+          <FlipLink href="#">Linkedin</FlipLink>
+          <FlipLink href="#">Facebook</FlipLink>
+          <FlipLink href="#">Instagram</FlipLink>
+        </div>
       </div>
     </div>
   )
@@ -27,7 +29,7 @@ const FlipLink = ({ children, href }) => {
       initial="initial"
       whileHover="hovered"
       href={href}
-      className="relative block overflow-hidden whitespace-nowrap text font-raleway uppercase sm:text-5xl md:text-6xl lg:text-7xl"
+      className="relative block overflow-hidden whitespace-nowrap font-raleway uppercase text-5xl md:text-7xl"
       style={{
         lineHeight: 0.75,
       }}
