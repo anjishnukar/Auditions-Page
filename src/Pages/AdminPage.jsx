@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import InducteeCard from "@/components/InducteeCard";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState} from "react";
 import { getInducteeDetails } from "@/services/api";
 
 // TODO: display first 50 inductees, and export button

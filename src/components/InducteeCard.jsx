@@ -1,6 +1,7 @@
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import IdenticonImage from "./IdenticonImage";
 import Terminal from "./Terminal";
+import { Link } from "react-router-dom";
 
 const InducteeCard = ({ inducteeDetails }) => {
     inducteeDetails = {
@@ -39,7 +40,7 @@ const InducteeCard = ({ inducteeDetails }) => {
         >
             <div className="flex items-center mb-2">
                 <IdenticonImage seed={inducteeDetails.full_name} />
-                <h2 className="font-bold text-2xl ml-4">{inducteeDetails.full_name}</h2>
+                <Link to={`${inducteeDetails.id}`}><h2 className="font-bold text-2xl ml-4">{inducteeDetails.full_name}</h2></Link>
 
                 <div className="ml-auto flex items-center">
                     <button className="bg-green-500 text-white px-2 py-1 rounded mr-2">
