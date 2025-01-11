@@ -2,7 +2,7 @@ import axios from "axios";
 import mockData from "@/lib/mock_data";
 import mockQuestions from "@/lib/mock_question";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "http://13.233.12.242:8000/";
 
 export const getInducteeDetails = async () => {
     if (import.meta.env.VITE_APP_ENV === 'production') {
