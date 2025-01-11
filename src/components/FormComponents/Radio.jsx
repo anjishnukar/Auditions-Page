@@ -1,18 +1,15 @@
 import React from 'react';
 
 const Radio = ({ question, options }) => (
-  <div className="text-gray-300 border-2 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 shadow-md rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto ">
+  <div className="text-gray-300 border-gray-700 border bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-sm border-gray-100p-1 shadow-lg shadow-black rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto ">
     <h2 className="text-xl font-semibold mb-4">{question}</h2>
-    <form>
-      <label className="block mb-2">You can choose a single option</label>
       <div>
         {options.map((option, index) => (
           <label key={index} className="flex items-center mb-2">
-            <input type="radio" name="radio" className="mr-2" /> {option}
+            <input type="radio" name="radio" className="mr-2 accent-violet-700" /> {option}
           </label>
         ))}
       </div>
-    </form>
   </div>
 );
 

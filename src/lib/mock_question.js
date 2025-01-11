@@ -23,6 +23,15 @@ const mockQuestions = [
         "additional_data": {
             "long_answer": true
         }
+    },
+    {
+        "id": 12,
+        "question": "Checkbox question",
+        "type": "checkbox",
+        "additional_data": {
+            "option_1": "Yes" ,
+            "option_2": "No"
+        }
     }
 ];
 

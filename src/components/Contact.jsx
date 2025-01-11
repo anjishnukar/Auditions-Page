@@ -8,8 +8,8 @@ const STAGGER = 0.025;
 const Contact = () => {
   return (
     <div id='Contact' className='bg-black rounded-t-3xl z-10 text-gray-300 px-5 pb-2'>
-      <div className='font-raleway font-bold text-7xl py-8'>Contact</div>
-      <div className='flex flex-col md:flex-row md:items-end md:justify-between'>
+      <div className='font-raleway font-bold text-4xl py-8 text-white md:hidden'>Contact</div>
+      <div className='flex flex-col md:flex-row-reverse md:items-end md:justify-between'>
         <div className='flex flex-col'>
           <FlipLink href="#">Instagram</FlipLink>
           <FlipLink href="#">Linkedin</FlipLink>
@@ -17,8 +17,9 @@ const Contact = () => {
           <FlipLink href="#">Facebook</FlipLink>
           <FlipLink href="#">Mail</FlipLink>
         </div>
-        <hr class="h-px my-8 bg-gray-200 border-0 md:hidden"></hr>
-        <div className='font-raleway md:text-xl text-gray-500 md:text-right'>
+        <hr class="h-px my-4 bg-gray-200 border-0 md:hidden"></hr>
+        <div className='font-raleway md:text-xl text-gray-500'>
+          <div className='font-raleway font-bold text-4xl py-8 text-white hidden md:block'>Contact</div>
           <div className=''>Entrepreneurship Development Cell</div>
           <div className=''>NIT Durgapur</div>
           <div className=''><FaPhone className='mr-1 inline' />: +91 70076 47720 (Sanvie Singhal)</div>
@@ -43,7 +44,7 @@ const FlipLink = ({ children, href }) => {
         lineHeight: 0.75,
       }}
     >
-      <div>
+      <div className='w-fit md:float-right'>
         {children.split("").map((l, i) => (
           <motion.span
             variants={{
@@ -66,7 +67,7 @@ const FlipLink = ({ children, href }) => {
           </motion.span>
         ))}
       </div>
-      <div className="absolute inset-0">
+      <div className="absolute md:right-0">
         {children.split("").map((l, i) => (
           <motion.span
             variants={{

@@ -43,19 +43,17 @@ const QuizPage = () => {
         <div className="flex flex-col bg-gray-900 min-h-screen py-8 justify-center items-center">
             <Navbar />
             <div className='h-24'></div>
-            <div class="fixed top-48 left-96 w-72 h-72 bg-purple-300 rounded-full filter blur-xl opacity-30 animate-blob"></div>
-            <div class="fixed top-96 right-96 w-72 h-72 bg-indigo-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div class="fixed top-72 left-72 w-72 h-72 bg-pink-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+            <div className="fixed top-48 left-96 w-72 h-72 bg-purple-300 rounded-full filter blur-xl opacity-30 animate-blob"></div>
+            <div className="fixed top-96 right-96 w-72 h-72 bg-indigo-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="fixed top-72 left-72 w-72 h-72 bg-pink-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
             <div>
                 {questions.map(renderQuestion)}
-                <div>
-                    <button className="p-[3px] w-fit relative">
+                    <button className="p-[3px] w-fit relative mx-auto block mt-6">
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
                         <div className="px-8 py-2 bg-gray-900 rounded-[6px] font-raleway font-bold relative group transition duration-200 text-white hover:bg-transparent">
                             Submit
                         </div>
                     </button>
-                </div>
             </div>
         </div>
     );

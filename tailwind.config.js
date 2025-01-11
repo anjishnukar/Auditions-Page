@@ -73,6 +73,10 @@ export default {
 			poppins: [
 				'Poppins',
 				'serif'
+			],
+			rubik: [
+				"Rubik Distressed", 
+				'serif'
 			]
   		},
   		borderRadius: {

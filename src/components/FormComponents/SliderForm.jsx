@@ -9,7 +9,7 @@ const SliderForm = ({question}) => {
   };
 
   return (
-    <div className="text-gray-300 border-2 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 shadow-md rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto">
+    <div className="text-gray-300 border-gray-700 border bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-sm border-gray-100p-1 shadow-lg shadow-black rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto ">
       <h2 className="text-xl font-semibold">{question}</h2>
       <form className="space-y-4">
         <div>

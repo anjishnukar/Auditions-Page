@@ -9,7 +9,7 @@ import ProjectCard from './ProjectCard';
 const DomainSlider = () => {
   return (
     <div id="Projects" className="p-10 md:p-24 text-white">
-      <h1 className="text-6xl md:text-8xl text-white font-raleway font-bold">Domains</h1>
+      <h1 className="text-4xl md:text-6xl text-white text-center font-raleway font-bold">Domains</h1>
       <div className="py-12 px-8 flex flex-wrap gap-10 items-center justify-center">
         <ProjectCard
           title="Content Writing"
