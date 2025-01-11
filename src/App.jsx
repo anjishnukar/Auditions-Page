@@ -3,7 +3,8 @@ import LandingPage from './Pages/LandingPage'
 import AdminPage from './Pages/AdminPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import QuizPage from './Pages/QuizPage'
-import Login from './components/Login'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
     {
       path: '/login',
       element: <Login/>,
+    },
+    {
+      path: '/signup',
+      element: <Signup/>,
     },
     {
       path:'/admin',

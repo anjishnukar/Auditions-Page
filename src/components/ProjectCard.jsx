@@ -11,7 +11,7 @@ import { FiMousePointer } from "react-icons/fi";
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
 
-const ProjectCard = ({ title, main }) => {
+const ProjectCard = ({ title, backgroundImageUrl }) => {
   const ref = useRef(null);
 
   const x = useMotionValue(0);
@@ -60,8 +60,9 @@ const ProjectCard = ({ title, main }) => {
         style={{
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
+          backgroundImage: `url(${backgroundImageUrl})`
         }}
-        className="absolute inset-4 grid place-content-center rounded-xl bg-purple-600 shadow-lg"
+        className="absolute inset-4 grid place-content-center rounded-xl bg-cover bg-center shadow-lg"
       >
         <p
           style={{
