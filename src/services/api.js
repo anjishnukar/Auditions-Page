@@ -39,3 +39,61 @@ export const login = async (username, password) => {
         throw new Error(error.response.data.message || 'Login failed');
     }
 };
+
+export const quizResponses = async (student_id) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/responses`);
+        console.log(response.data.filter((response) => response.student_id === student_id));
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Quiz responses failed');
+    }
+};
+
+export const postResponse = async (question, answer, student_id) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/responses`, { question, answer, student: student_id });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Response failed');
+    }
+};
+
+export const getComments = async (studentId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/comments/${studentId}`);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Comments failed');
+    }
+};
+
+export const postComments = async (studentId, comment, adminUserName, year, round) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/comments`, { user: studentId, comment, by: adminUserName, year, round });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Comments failed');
+    }
+};
+
+export const patchColor = async (studentId, color) => {
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/details/${studentId}`, { color });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Color patch failed');
+    }
+};
+
+export const responseExists = async (studentId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/responses/${studentId}`);
+        console.log(response.data);
+        console.log(response.data.length != 0);
+        return response.data.length != 0;
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Response check failed');
+    }
+};
