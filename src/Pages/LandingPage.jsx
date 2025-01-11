@@ -1,9 +1,9 @@
-import Hero from '../components/Hero'
-import DomainSlider from '../components/DomainSlider'
-import About from '../components/About'
-import Contact from '../components/Contact'
-import Navbar from '../components/Navbar'
-import Motto from '../components/Motto'
+import Hero from '../components/Hero';
+import DomainSlider from '../components/DomainSlider';
+import About from '../components/About';
+import Contact from '../components/Contact';
+import Navbar from '../components/Navbar';
+import Motto from '../components/Motto';
 
 const LandingPage = () => {
   return (
@@ -18,7 +18,7 @@ const LandingPage = () => {
       <DomainSlider/>
       <Contact/>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;
