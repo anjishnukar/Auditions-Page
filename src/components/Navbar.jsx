@@ -41,7 +41,7 @@ const Tab = ({ address, children, setPosition }) => {
   const ref = useRef(null);
 
   return (
-    <li
+    <Link to={address}
       ref={ref}
       onMouseEnter={() => {
         if (!ref?.current) return;
@@ -56,8 +56,8 @@ const Tab = ({ address, children, setPosition }) => {
       }}
       className="relative z-10 block cursor-pointer px-2 py-1.5 text-sm uppercase font-raleway text-white md:px-5 md:py-3 md:text-base"
     >
-      <Link to={address}>{children}</Link>
-    </li>
+      {children}
+    </Link>
   );
 };
 
