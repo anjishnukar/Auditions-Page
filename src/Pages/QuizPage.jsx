@@ -33,7 +33,6 @@ const QuizPage = () => {
             console.log(decoded.student_id);
 
             responseExists(decoded.student_id).then((res) => {
-                toast.success(`Response already exists`);
                 res ? navigate("/") : NaN;
             });
         }
