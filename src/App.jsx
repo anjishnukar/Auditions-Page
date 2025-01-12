@@ -5,8 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import QuizPage from './Pages/QuizPage';
 import Login from './Pages/Login';
 import AdminDetails from './Pages/AdminDetails';
+import Signup from './Pages/Signup';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +18,11 @@ function App() {
     },
     {
       path: '/quiz',
-      element: <QuizPage />
+      element: (
+        <ProtectedRoute>
+          <QuizPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: '/login',
@@ -37,11 +43,15 @@ function App() {
           <AdminDetails />
         </ProtectedRoute>
       )
+    },{
+      path: 'signup',
+      element: <Signup />
     }
   ]);
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer />
     </>
   );
 }
@@ -57,6 +67,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
 
   const decodedToken = jwtDecode(token);
   const userRole = decodedToken.is_club_member ? 'admin' : 'user';
+  // const userRole = 'admin';
 
   console.log(decodedToken, userRole);
 

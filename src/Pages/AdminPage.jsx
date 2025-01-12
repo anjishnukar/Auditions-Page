@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import InducteeCard from "@/components/InducteeCard";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getInducteeDetails } from "@/services/api";
 
 // TODO: display first 50 inductees, and export button
@@ -53,18 +53,19 @@ const AdminPage = () => {
                 <div className="w-8 h-8 bg-yellow-600 p-2 rounded-full border-4" onClick={() => handleColor(3)}></div>
                 <div className="w-8 h-8 bg-black-600 p-2 rounded-full border-4" onClick={() => handleColor(4)}></div>
             </div>
-
-            {
-                inductees.filter((inducteeDetails) => {
-                    return search.toLowerCase() === ''
-                        ? true
-                        : inducteeDetails[filter]?.toLowerCase().includes(search.toLowerCase());
-                }).filter((inducteeDetails) => {
-                    return color === 0 ? true : inducteeDetails.color === color;
-                }).map((inducteeDetails, index) => (
-                    <InducteeCard key={index} inducteeDetails={inducteeDetails} />
-                ))
-            }
+            <div className="flex flex-wrap items-center space-x-5">
+                {
+                    inductees.filter((inducteeDetails) => {
+                        return search.toLowerCase() === ''
+                            ? true
+                            : inducteeDetails[filter]?.toLowerCase().includes(search.toLowerCase());
+                    }).filter((inducteeDetails) => {
+                        return color === 0 ? true : inducteeDetails.color === color;
+                    }).map((inducteeDetails, index) => (
+                        <InducteeCard key={index} inducteeDetails={inducteeDetails} />
+                    ))
+                }
+            </div>
         </div>
     );
 };
