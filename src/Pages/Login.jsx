@@ -50,7 +50,7 @@ export default Login;
 
 const InputFields = ({ setUsername, setPassword, handleLogin }) => {
     return (
-        <div className='text-white bg-gray-300 px-10 py-5 rounded-3xl border-2 border-gray-200 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1'>
+        <div className='text-white bg-gray-300 px-10 py-5 rounded-3xl border-2 border-gray-200 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 font-poppins'>
             <h1 className='text-5xl font-semibold'>Welcome</h1>
             <p className='font-medium text-lg text-gray-500 mt-4'>Please enter your details.</p>
             <div className='mt-8'>

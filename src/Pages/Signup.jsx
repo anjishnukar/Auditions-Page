@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { signup } from '@/services/api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Signup = () => {
@@ -33,7 +33,7 @@ const Signup = () => {
     };
 
     return (
-        <div className='flex w-full h-fit min-h-screen bg-gray-900 justify-center items-center'>
+        <div className='flex w-full h-fit min-h-screen bg-gray-900 justify-center items-center font-poppins'>
             <div className='w-fit md:w-1/2 flex items-center justify-center lg:w-1/2'>
                 <InputFields formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
             </div>
@@ -104,7 +104,7 @@ const InputFields = ({ formData, handleChange, handleSubmit }) => {
             </div>
             <div className='mt-8 flex justify-center items-center'>
                 <p className='font-medium  text-sm md:text-base'>Already have an account?</p>
-                <button className='text-violet-500 text-sm md:text-base font-medium ml-2'>Login</button>
+                <Link to={"/login"} className='text-violet-500 text-sm md:text-base font-medium ml-2'>Login</Link>
             </div>
         </form>
     );
