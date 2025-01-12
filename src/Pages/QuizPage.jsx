@@ -23,27 +23,37 @@ const QuizPage = () => {
     const [gender, setGender] = useState(null);
     const [domain, setDomain] = useState(null);
     const [placeOfResidence, setPlaceOfResidence] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedToken = localStorage.getItem('accessToken');
-        if (storedToken) {
-            const decoded = jwtDecode(storedToken);
-            setStudentId(decoded.student_id);
-            console.log(decoded.student_id);
-            responseExists(decoded.student_id).then((res) => {
-                res ? navigate("/") : NaN;
-            });
-        }
+        const initializePage = async () => {
+            setIsLoading(true);
+            try {
+                const storedToken = localStorage.getItem('accessToken');
+                if (storedToken) {
+                    const decoded = jwtDecode(storedToken);
+                    setStudentId(decoded.student_id);
+                    
+                    const exists = await responseExists(decoded.student_id);
+                    if (exists) {
+                        toast.success(`Response already exists`);
+                        navigate("/");
+                        return;
+                    }
+                }
 
-        const fetchQuestions = async () => {
-            const response = await getQuizQuestions();
-            setQuestions(response);
+                const response = await getQuizQuestions();
+                setQuestions(response);
+            } catch (error) {
+                toast.error('Failed to load questions');
+            } finally {
+                setIsLoading(false);
+            }
         };
 
-        fetchQuestions();
-
-    }, [studentId]);
+        initializePage();
+    }, [studentId, navigate]);
 
     const handleAnswerChange = (questionId, answer) => {
         console.log('Question ID:', questionId);
@@ -151,27 +161,34 @@ const QuizPage = () => {
             <div className="fixed top-48 left-96 w-72 h-72 bg-purple-300 rounded-full filter blur-xl opacity-30 animate-blob"></div>
             <div className="fixed top-96 right-96 w-72 h-72 bg-indigo-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
             <div className="fixed top-72 left-72 w-72 h-72 bg-pink-300 rounded-full filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-            <div>
-                {/* Personal Questions */}
-                <ShortAnswer question="Full Name" onChange={(answer) => setFullName(answer)} />
-                <Dropdown question="Gender" options={['Male', 'Female', 'Other']} onChange={(answer) => setGender(answer)} />
-                <ShortAnswer question="Roll Number" onChange={(answer) => setRollNumber(answer)} />
-                <Dropdown question="Department" options={['Biotechnology', 'Chemical Engineering', 'Chemistry', 'Civil Engineering', 'Computer Science and Engineering', 'Electrical Engineering', 'Electronics and Communication Engineering', 'Mathematics and Computing', 'Mechanical Engineering', 'Metallurgical and Materials Engineering']} onChange={(answer) => setDepartment(answer)} />
-                <ShortAnswer question="Phone Number" onChange={(answer) => setPhoneNumber(answer)} />
-                <Dropdown question="Year" options={['1st Year', '2nd Year']} onChange={(answer) => setYear(answer)} />
-                <ShortAnswer question="Registration Number" onChange={(answer) => setRegistrationNumber(answer)} />
-                <ShortAnswer question="Place of Residence" onChange={(answer) => setPlaceOfResidence(answer)} />
-                <Dropdown question="Select your domain" options={['Web Development', 'Video Editing', 'Graphic Designing', 'Content Writing', 'Event Management']} onChange={(answer) => setDomain(answer)} />
-                {questions.map(renderQuestion)}
-                <div>
-                    <button className="p-[3px] w-fit relative mx-auto block mt-6" onClick={handleSubmit}>
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                        <div className="px-8 py-2 bg-gray-900 rounded-[6px] font-raleway font-bold relative group transition duration-200 text-white hover:bg-transparent">
-                            Submit
-                        </div>
-                    </button>
+            
+            {isLoading ? (
+                <div className="flex-1 flex justify-center items-center">
+                    <PurpleLoader />
                 </div>
-            </div>
+            ) : (
+                <div>
+                    {/* Personal Questions */}
+                    <ShortAnswer question="Full Name" onChange={(answer) => setFullName(answer)} />
+                    <Dropdown question="Gender" options={['Male', 'Female', 'Other']} onChange={(answer) => setGender(answer)} />
+                    <ShortAnswer question="Roll Number" onChange={(answer) => setRollNumber(answer)} />
+                    <Dropdown question="Department" options={['Biotechnology', 'Chemical Engineering', 'Chemistry', 'Civil Engineering', 'Computer Science and Engineering', 'Electrical Engineering', 'Electronics and Communication Engineering', 'Mathematics and Computing', 'Mechanical Engineering', 'Metallurgical and Materials Engineering']} onChange={(answer) => setDepartment(answer)} />
+                    <ShortAnswer question="Phone Number" onChange={(answer) => setPhoneNumber(answer)} />
+                    <Dropdown question="Year" options={['1st Year', '2nd Year']} onChange={(answer) => setYear(answer)} />
+                    <ShortAnswer question="Registration Number" onChange={(answer) => setRegistrationNumber(answer)} />
+                    <ShortAnswer question="Place of Residence" onChange={(answer) => setPlaceOfResidence(answer)} />
+                    <Dropdown question="Select your domain" options={['Web Development', 'Video Editing', 'Graphic Designing', 'Content Writing', 'Event Management']} onChange={(answer) => setDomain(answer)} />
+                    {questions.map(renderQuestion)}
+                    <div>
+                        <button className="p-[3px] w-fit relative mx-auto block mt-6" onClick={handleSubmit}>
+                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                            <div className="px-8 py-2 bg-gray-900 rounded-[6px] font-raleway font-bold relative group transition duration-200 text-white hover:bg-transparent">
+                                Submit
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
