@@ -4,7 +4,7 @@ import mockQuestions from "@/lib/mock_question";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_BASE_URL = import.meta.env.VITE_APP_ENV === 'production' ? "http://13.233.12.242:800" : 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_APP_ENV === 'production' ? "http://13.233.12.242:8000" : 'http://localhost:8000';
 
 export const signup = async (username, email, password, confirmPassword) => {
     try {
