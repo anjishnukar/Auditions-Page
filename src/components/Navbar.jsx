@@ -20,7 +20,7 @@ const Navbar = () => {
       className="fixed left-0 right-0 top-10 mx-auto flex max-w-screen w-fit rounded-full border border-gray-700 shadow-lg shadow-black bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-md z-10"
     >
       <Tab setPosition={setPosition} address={"/"}>Home</Tab>
-      <Tab setPosition={setPosition} address={"edcnitd.co.in"}>EDC</Tab>
+      <Tab setPosition={setPosition} address={"https://edcnitd.co.in"}>EDC</Tab>
       <Tab setPosition={setPosition} address={"/quiz"}>Questions</Tab>
       <Tab setPosition={setPosition} address={"/results"}>Results</Tab>
 

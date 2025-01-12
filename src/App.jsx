@@ -4,9 +4,12 @@ import AdminPage from './Pages/AdminPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import QuizPage from './Pages/QuizPage';
 import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import ErrorPage from './Pages/ErrorPage';
 import AdminDetails from './Pages/AdminDetails';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import ComingSoon from './Pages/ComingSoon';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +26,14 @@ function App() {
       element: <Login />,
     },
     {
+      path: '/signup',
+      element: <Signup/>,
+    },
+    {
+      path: '/results',
+      element: <ComingSoon/>,
+    },
+    {
       path: '/admin',
       element: (
         <ProtectedRoute requiredRole="admin">
@@ -37,6 +48,10 @@ function App() {
           <AdminDetails />
         </ProtectedRoute>
       )
+    },
+    {
+      path:"*",
+      element:<ErrorPage />
     }
   ]);
   return (

@@ -11,11 +11,11 @@ const Contact = () => {
       <div className='font-raleway font-bold text-4xl py-8 text-white md:hidden'>Contact</div>
       <div className='flex flex-col md:flex-row-reverse md:items-end md:justify-between'>
         <div className='flex flex-col'>
-          <FlipLink href="#">Instagram</FlipLink>
-          <FlipLink href="#">Linkedin</FlipLink>
-          <FlipLink href="#">Youtube</FlipLink>
-          <FlipLink href="#">Facebook</FlipLink>
-          <FlipLink href="#">Mail</FlipLink>
+          <FlipLink href="https://www.instagram.com/edc.nitd/">Instagram</FlipLink>
+          <FlipLink href="https://in.linkedin.com/company/edcnitd">Linkedin</FlipLink>
+          <FlipLink href="https://www.youtube.com/@edcnitd">Youtube</FlipLink>
+          <FlipLink href="https://www.facebook.com/edc.nitd/">Facebook</FlipLink>
+          <FlipLink href="mailto: edc@nitdgp.ac.in">Mail</FlipLink>
         </div>
         <hr class="h-px my-4 bg-gray-200 border-0 md:hidden"></hr>
         <div className='font-raleway md:text-xl text-gray-500'>
@@ -38,6 +38,7 @@ const FlipLink = ({ children, href }) => {
     <motion.a
       initial="initial"
       whileHover="hovered"
+      target="_blank"
       href={href}
       className="relative block overflow-hidden whitespace-nowrap font-raleway uppercase text-3xl text-gray-500 md:text-5xl"
       style={{
