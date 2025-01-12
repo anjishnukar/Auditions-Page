@@ -114,7 +114,7 @@ const QuizPage = () => {
             }
             navigate("/");
         } catch (error) {
-            toast.error(error.message);
+            console.error(error.message);
         }
     };
 
