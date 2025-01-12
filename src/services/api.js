@@ -4,7 +4,7 @@ import mockQuestions from "@/lib/mock_question";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const API_BASE_URL = "https://13.233.12.242:8000";
+const API_BASE_URL = "https://hult.edcnitd.co.in";
 
 export const signup = async (username, email, password, confirmPassword) => {
     try {
