@@ -112,7 +112,6 @@ const QuizPage = () => {
                 console.log(questionId, answer, studentId);
                 console.log(await postResponse(questionId, answer, studentId));
             }
-            toast.success('Responses submitted successfully');
             navigate("/");
         } catch (error) {
             toast.error(error.message);
