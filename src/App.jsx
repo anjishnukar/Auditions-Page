@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import QuizPage from './Pages/QuizPage';
 import Login from './Pages/Login';
 import AdminDetails from './Pages/AdminDetails';
+import Signup from './Pages/Signup';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { ToastContainer } from 'react-toastify';
@@ -42,6 +43,9 @@ function App() {
           <AdminDetails />
         </ProtectedRoute>
       )
+    },{
+      path: 'signup',
+      element: <Signup />
     }
   ]);
   return (
