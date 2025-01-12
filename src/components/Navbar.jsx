@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = () => {
   const [position, setPosition] = useState({
@@ -8,6 +9,9 @@ const Navbar = () => {
     width: 0,
     opacity: 0,
   });
+
+  const token = localStorage.getItem('accessToken');
+  const isClubMember = !token ? false : jwtDecode(token).is_club_member;
 
   return (
     <ul
@@ -21,7 +25,9 @@ const Navbar = () => {
     >
       <Tab setPosition={setPosition} address={"/"}>Home</Tab>
       <Tab setPosition={setPosition} address={"edcnitd.co.in"}>EDC</Tab>
-      <Tab setPosition={setPosition} address={"/quiz"}>Questions</Tab>
+      <Tab setPosition={setPosition} address={isClubMember ? "/admin" : "/quiz"}>
+        {isClubMember ? "Admin" : "Questions"}
+      </Tab>
       <Tab setPosition={setPosition} address={"/results"}>Results</Tab>
 
       <Cursor position={position} />

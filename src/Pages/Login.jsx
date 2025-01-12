@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { login } from '@/services/api';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -16,7 +17,11 @@ const Login = () => {
             localStorage.setItem('accessToken', data.access);
             localStorage.setItem('refreshToken', data.refresh);
             toast.success(`User ${username} logged in successful`);
-            navigate('/quiz');
+            if (jwtDecode(data.access).is_club_member) {
+                navigate('/admin');
+            } else {
+                navigate('/quiz');
+            }
         } catch (error) {
             toast.error("Invalid username or password");
             console.log(error);
@@ -26,7 +31,7 @@ const Login = () => {
     return (
         <div className='flex w-full h-fit min-h-screen bg-gray-900 justify-center items-center'>
             <div className='w-fit md:w-1/2 flex items-center justify-center lg:w-1/2'>
-                <InputFields setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin}/>
+                <InputFields setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin} />
             </div>
             <div className='h-full w-0 md:w-1/2 order-2 flex justify-center items-center '>
                 <DotLottieReact
@@ -50,18 +55,18 @@ const InputFields = ({ setUsername, setPassword, handleLogin }) => {
             <p className='font-medium text-lg text-gray-500 mt-4'>Please enter your details.</p>
             <div className='mt-8'>
                 <label className='text-lg font-medium'>Username</label>
-                <input 
-                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent' 
-                    placeholder='Enter your username' 
+                <input
+                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                    placeholder='Enter your username'
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
             <div className='mt-8'>
                 <label className='text-lg font-medium'>Password</label>
-                <input 
-                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent' 
-                    placeholder='Enter your password' 
-                    type='password' 
+                <input
+                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                    placeholder='Enter your password'
+                    type='password'
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>

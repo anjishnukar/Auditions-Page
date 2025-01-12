@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
-const SliderForm = ({question}) => {
-  const [sliderValue, setSliderValue] = useState(5); 
+const SliderForm = ({question, onChange}) => {
+  const [sliderValue, setSliderValue] = useState(0); 
 
-  
-  const handleSliderChange = (e) => {
-    setSliderValue(e.target.value);
+  const handleSliderChange = (event) => {
+    console.log('ShortAnswer change:', event.target.value);
+    setSliderValue(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
@@ -19,14 +20,14 @@ const SliderForm = ({question}) => {
           <input
             id="experience"
             type="range"
-            min="1"
+            min="0"
             max="10"
             value={sliderValue}
             onChange={handleSliderChange}
             className="w-full mt-2 h-2 bg-gray-200 rounded-lg appearance-none focus:outline-none"
           />
           <div className="flex justify-between text-sm">
-            <span className="text-gray-400">1</span>
+            <span className="text-gray-400">0</span>
             <span className="text-gray-400">10</span>
           </div>
         </div>

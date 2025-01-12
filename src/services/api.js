@@ -19,14 +19,14 @@ export const getAccessToken = () => {
     return localStorage.getItem('accessToken');
 };
 
-export const patchInductee = async (fullName, rollNumber, department, gender, year, registrationNumber, phoneNumber) => {
+export const patchInductee = async (fullName, rollNumber, department, gender, year, registrationNumber, phoneNumber, place, domains) => {
     try {
         const token = getAccessToken();
-        const studentId = jwtDecode(token).user_id;
-        const response = await axiosInstance.patch(`${API_BASE_URL}/details/${studentId}`, { full_name: fullName, roll_number: rollNumber, department, gender, year, registration_number: registrationNumber, phone_number: phoneNumber });
+        const studentId = jwtDecode(token).student_id;
+        const response = await axiosInstance.patch(`${API_BASE_URL}/details/${studentId}`, { full_name: fullName, rollnumber: rollNumber, department, gender, year, registration_no: registrationNumber, phone_number: phoneNumber , place, domains});
         return response.data;
     } catch (error) {
-        throw new Error(error.response.data.message || 'Patch failed');
+        throw new Error(error.response.data.message || 'Enter your details correctly');
     }
 };
 
@@ -49,14 +49,13 @@ export const getInducteeDetailsById = async (id) => {
 };
 
 export const getQuizQuestions = async () => {
-    return mockQuestions;
-    // try {
-    //     const response = await axiosInstance.get(`${API_BASE_URL}/questions`);
-    //     return response.data;
-    // }
-    // catch (error) {
-    //     throw new Error(error.response.data.message || 'Questions failed');
-    // }
+    try {
+        const response = await axiosInstance.get(`${API_BASE_URL}/questions`);
+        return response.data;
+    }
+    catch (error) {
+        throw new Error(error.response.data.message || 'Questions failed');
+    }
 };
 
 export const login = async (username, password) => {
