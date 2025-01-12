@@ -50,13 +50,13 @@ export default Login;
 
 const InputFields = ({ setUsername, setPassword, handleLogin }) => {
     return (
-        <div className='text-white bg-gray-300 px-10 py-5 rounded-3xl border-2 border-gray-200 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 font-poppins'>
+        <div className="text-gray-300 border-gray-700 border bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-sm border-gray-100p-1 shadow-lg shadow-black rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto">
             <h1 className='text-5xl font-semibold'>Welcome</h1>
             <p className='font-medium text-lg text-gray-500 mt-4'>Please enter your details.</p>
             <div className='mt-8'>
                 <label className='text-lg font-medium'>Username</label>
                 <input
-                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                    className="border-b focus:border-violet-500 p-2 w-full rounded bg-transparent outline-none bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 accent-violet-500"
                     placeholder='Enter your username'
                     onChange={(e) => setUsername(e.target.value)}
                 />
@@ -64,7 +64,7 @@ const InputFields = ({ setUsername, setPassword, handleLogin }) => {
             <div className='mt-8'>
                 <label className='text-lg font-medium'>Password</label>
                 <input
-                    className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent'
+                    className="border-b focus:border-violet-500 p-2 w-full rounded bg-transparent outline-none bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 accent-violet-500"
                     placeholder='Enter your password'
                     type='password'
                     onChange={(e) => setPassword(e.target.value)}
