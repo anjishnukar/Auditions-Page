@@ -1,8 +1,7 @@
 import React from 'react';
 
-const ShortAnswer = ({ question, onChange }) => {
+const ShortAnswer = ({ question, onChange, isTenCharacters = false }) => {
   const handleChange = (event) => {
-    console.log('ShortAnswer change:', event.target.value);
     onChange(event.target.value);
   };
 
@@ -15,6 +14,7 @@ const ShortAnswer = ({ question, onChange }) => {
           className="border-b focus:border-violet-500 p-2 w-full rounded bg-transparent outline-none bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 accent-violet-500"
           placeholder="Type your answer here..."
           onChange={handleChange}
+          maxLength={isTenCharacters ? 10 : 255}
         />
       </form>
     </div>

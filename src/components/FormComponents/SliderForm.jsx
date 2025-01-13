@@ -4,7 +4,6 @@ const SliderForm = ({question, onChange}) => {
   const [sliderValue, setSliderValue] = useState(0); 
 
   const handleSliderChange = (event) => {
-    console.log('ShortAnswer change:', event.target.value);
     setSliderValue(event.target.value);
     onChange(event.target.value);
   };

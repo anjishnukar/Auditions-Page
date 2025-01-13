@@ -7,12 +7,13 @@ import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        console.log(username, password);
         try {
+            setIsLoading(true);
             const data = await login(username, password);
             localStorage.setItem('accessToken', data.access);
             localStorage.setItem('refreshToken', data.refresh);
@@ -25,13 +26,15 @@ const Login = () => {
         } catch (error) {
             toast.error("Invalid username or password");
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className='flex w-full h-fit min-h-screen bg-gray-900 justify-center items-center'>
             <div className='w-fit md:w-1/2 flex items-center justify-center lg:w-1/2'>
-                <InputFields setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin} />
+                <InputFields setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin} isLoading={isLoading} />
             </div>
             <div className='h-full w-0 md:w-1/2 order-2 flex justify-center items-center '>
                 <DotLottieReact
@@ -48,7 +51,7 @@ const Login = () => {
 
 export default Login;
 
-const InputFields = ({ setUsername, setPassword, handleLogin }) => {
+const InputFields = ({ setUsername, setPassword, handleLogin, isLoading = false }) => {
     return (
         <div className="text-gray-300 border-gray-700 border bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-sm border-gray-100p-1 shadow-lg shadow-black rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto">
             <h1 className='text-5xl font-semibold'>Welcome</h1>
@@ -71,7 +74,13 @@ const InputFields = ({ setUsername, setPassword, handleLogin }) => {
                 />
             </div>
             <div className='mt-8 flex flex-col gap-y-4'>
-                <button className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' onClick={handleLogin}>Sign in</button>
+                <button className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' onClick={handleLogin} >
+                    {isLoading ? (
+                        <div className="flex justify-center items-center space-x-2">
+                            <div className="border-t-4 border-b-4 border-transparent border-l-4 border-l-white w-6 h-6 rounded-full animate-spin mx-4"></div>
+                        </div>
+                        ) : "Sign in"}
+                </button>
             </div>
             <div className='mt-8 flex justify-center items-center'>
                 <p className='font-medium  text-sm md:text-base'>Don't have an account?</p>

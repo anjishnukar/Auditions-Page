@@ -11,7 +11,9 @@ export const signup = async (username, email, password, confirmPassword) => {
         const response = await axios.post(`${API_BASE_URL}/signup`, { username, email, password, confirm_password: confirmPassword });
         return response.data;
     } catch (error) {
-        throw new Error(error.response.data.message || 'Signup failed');
+        const errorObject = error.response.data;
+        const errorMessage = errorObject.username || errorObject.email || errorObject.password;
+        throw new Error(errorMessage);
     }
 };
 
@@ -26,7 +28,9 @@ export const patchInductee = async (fullName, rollNumber, department, gender, ye
         const response = await axiosInstance.patch(`${API_BASE_URL}/details/${studentId}`, { full_name: fullName, rollnumber: rollNumber, department, gender, year, registration_no: registrationNumber, phone_number: phoneNumber , place, domains});
         return response.data;
     } catch (error) {
-        throw new Error(error.response.data.message || 'Enter your details correctly');
+        const errorObject = error.response.data;
+        const errorMessage = Object.entries(errorObject);
+        throw new Error(errorMessage || 'Enter your personal details correctly');
     }
 };
 
@@ -117,8 +121,6 @@ export const patchColor = async (studentId, color) => {
 export const responseExists = async (studentId) => {
     try {
         const response = await axiosInstance.get(`${API_BASE_URL}/responses/${studentId}`);
-        console.log(response.data);
-        console.log(response.data.length != 0);
         return response.data.length != 0;
     } catch (error) {
         throw new Error(error.response.data.message || 'Response check failed');

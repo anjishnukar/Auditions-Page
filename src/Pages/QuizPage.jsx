@@ -11,6 +11,7 @@ import Dropdown from '@/components/FormComponents/Dropdown';
 import SliderForm from '@/components/FormComponents/SliderForm';
 
 const QuizPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [studentId, setStudentId] = useState(null);
     const [answers, setAnswers] = useState({});
@@ -26,14 +27,21 @@ const QuizPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // console.log('%c ___________  _____ \n|  ___|  _  \/  __ \\\n| |__ | | | || /  \/\n|  __|| | | || |    \n| |___| |/ / | \\__/\\\n\\____/|___/   \\____/', 'font-family: monospace; color: green; font-size: 16px;');
+        // console.log('%c Congrats you found this! Contact Anjishnu or Ayush to let them know.', 'font-family: monospace; color: green; font-size: 12px; font-weight: bold;');
+
         const storedToken = localStorage.getItem('accessToken');
         if (storedToken) {
             const decoded = jwtDecode(storedToken);
             setStudentId(decoded.student_id);
-            console.log(decoded.student_id);
 
-            responseExists(decoded.student_id).then((res) => {
-                res ? navigate("/") : NaN;
+            responseExists(decoded.student_id).then((check) => {
+                if (check) {
+                    if (!toast.isActive('response-warning')) {
+                        toast.warning("Response has already been recorded.", { toastId: 'response-warning' });
+                    }
+                    navigate("/");
+                } 
             });
         }
 
@@ -43,24 +51,25 @@ const QuizPage = () => {
         };
 
         fetchQuestions();
-
-    }, [studentId]);
+    }, []);
 
     const handleAnswerChange = (questionId, answer) => {
-        console.log('Question ID:', questionId);
-        console.log('Answer:', answer);
         setAnswers(prevAnswers => {
             const updatedAnswers = {
                 ...prevAnswers,
                 [questionId]: answer
             };
-            console.log('Updated Answers:', updatedAnswers);
             return updatedAnswers;
         });
     };
 
     const handleSubmit = async () => {
         try {
+            const result = window.confirm("Are you sure you want to proceed? You will not be able to edit your answers after submission.")
+            if (!result) { return; }
+
+            setIsLoading(true);
+
             const domainMap = {
                 "Web Development": "WEBD",
                 "Video Editing": "VIDEO",
@@ -105,20 +114,21 @@ const QuizPage = () => {
                 domainMap[domain]
             );
 
-            console.log(answers);
             for (const questionId in answers) {
                 const answer = answers[questionId];
-                console.log(questionId, answer, studentId);
-                console.log(await postResponse(questionId, answer, studentId));
+                if (answer.length != 0) await postResponse(questionId, answer, studentId);
             }
+            toast.success("Your response has been recorded successfully");
             navigate("/");
         } catch (error) {
+            toast.error(error.message)
             console.error(error.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const renderQuestion = (question) => {
-        console.log(question);
         switch (question.type) {
             case 'text':
                 if (question.additional_data.long_answer) {
@@ -155,19 +165,24 @@ const QuizPage = () => {
                 {/* Personal Questions */}
                 <ShortAnswer question="Full Name" onChange={(answer) => setFullName(answer)} />
                 <Dropdown question="Gender" options={['Male', 'Female', 'Other']} onChange={(answer) => setGender(answer)} />
-                <ShortAnswer question="Roll Number" onChange={(answer) => setRollNumber(answer)} />
+                <ShortAnswer question="Roll Number" onChange={(answer) => setRollNumber(answer)} isTenCharacters={true}/>
                 <Dropdown question="Department" options={['Biotechnology', 'Chemical Engineering', 'Chemistry', 'Civil Engineering', 'Computer Science and Engineering', 'Electrical Engineering', 'Electronics and Communication Engineering', 'Mathematics and Computing', 'Mechanical Engineering', 'Metallurgical and Materials Engineering']} onChange={(answer) => setDepartment(answer)} />
-                <ShortAnswer question="Phone Number" onChange={(answer) => setPhoneNumber(answer)} />
+                <ShortAnswer question="Phone Number" onChange={(answer) => setPhoneNumber(answer)} isTenCharacters={true}/>
                 <Dropdown question="Year" options={['1st Year', '2nd Year']} onChange={(answer) => setYear(answer)} />
-                <ShortAnswer question="Registration Number" onChange={(answer) => setRegistrationNumber(answer)} />
+                <ShortAnswer question="Registration Number" onChange={(answer) => setRegistrationNumber(answer)} isTenCharacters={true}/>
                 <ShortAnswer question="Place of Residence" onChange={(answer) => setPlaceOfResidence(answer)} />
                 <Dropdown question="Select your domain" options={['Web Development', 'Video Editing', 'Graphic Designing', 'Content Writing', 'Event Management']} onChange={(answer) => setDomain(answer)} />
                 {questions.map(renderQuestion)}
                 <div>
+                    {/* TODO: make this a component */}
                     <button className="p-[3px] w-fit relative mx-auto block mt-6" onClick={handleSubmit}>
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
                         <div className="px-8 py-2 bg-gray-900 rounded-[6px] font-raleway font-bold relative group transition duration-200 text-white hover:bg-transparent">
-                            Submit
+                            {isLoading ? (
+                                <div className="flex justify-center items-center space-x-2">
+                                    <div className="border-t-4 border-b-4 border-transparent border-l-4 border-l-white w-6 h-6 rounded-full animate-spin mx-4"></div>
+                                </div>
+                            ) : "Submit"}
                         </div>
                     </button>
                 </div>

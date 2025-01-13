@@ -1,6 +1,5 @@
 const LongAnswer = ({ question, onChange }) => {
   const handleChange = (event) => {
-    console.log('LongAnswer change:', event.target.value);
     onChange(event.target.value);
   };
 
@@ -11,6 +10,7 @@ const LongAnswer = ({ question, onChange }) => {
         rows="4"
         placeholder="Type your answer here..."
         onChange={handleChange}
+        maxLength={999}
       ></textarea>
   </div>
   );

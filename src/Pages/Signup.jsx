@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Signup = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -24,18 +25,22 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setIsLoading(true);
             await signup(formData.username, formData.email, formData.password, formData.confirmPassword);
             toast.success('Signup successful');
             navigate('/login');
         } catch (error) {
-            toast.error('Signup failed:', error.message);
+            toast.error(`Signup failed: ${error.message}`);
+            console.error(error.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className='flex w-full h-fit min-h-screen bg-gray-900 justify-center items-center font-poppins'>
             <div className='w-fit md:w-1/2 flex items-center justify-center lg:w-1/2 pt-4'>
-                <InputFields formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+                <InputFields formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isLoading={isLoading}/>
             </div>
             <div className='h-full w-0 md:w-1/2 order-2 flex justify-center items-center '>
                 <DotLottieReact
@@ -52,7 +57,7 @@ const Signup = () => {
 
 export default Signup;
 
-const InputFields = ({ formData, handleChange, handleSubmit }) => {
+const InputFields = ({ formData, handleChange, handleSubmit, isLoading = false }) => {
     return (
         <form onSubmit={handleSubmit} className="text-gray-300 border-gray-700 border bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-sm border-gray-100p-1 shadow-lg shadow-black rounded-lg p-6 mb-4 w-full max-w-screen md:w-96 mx-auto">
             <h1 className='text-4xl font-semibold'>Welcome</h1>
@@ -100,7 +105,13 @@ const InputFields = ({ formData, handleChange, handleSubmit }) => {
                 />
             </div>
             <div className='mt-4 flex flex-col gap-y-4'>
-                <button type='submit' className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-violet-500 text-white text-lg font-bold'>Sign up</button>
+                <button type='submit' className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                    {isLoading ? (
+                        <div className="flex justify-center items-center space-x-2">
+                            <div className="border-t-4 border-b-4 border-transparent border-l-4 border-l-white w-6 h-6 rounded-full animate-spin mx-4"></div>
+                        </div>
+                    ) : "Sign up"}
+                </button>
             </div>
             <div className='mt-8 flex justify-center items-center'>
                 <p className='font-medium  text-sm md:text-base'>Already have an account?</p>

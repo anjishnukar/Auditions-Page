@@ -1,6 +1,5 @@
 const Radio = ({ question, options, onChange }) => {
   const handleChange = (event) => {
-    console.log('Radio change:', event.target.value);
     onChange(event.target.value);
   };
 

@@ -1,6 +1,5 @@
 const Checkbox = ({ question, options, onChange }) => {
   const handleChange = (event) => {
-    console.log('Checkbox change:', event.target.value);
     onChange(event.target.value);
   };
 

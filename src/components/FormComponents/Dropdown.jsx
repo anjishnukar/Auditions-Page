@@ -1,6 +1,5 @@
 const Dropdown = ({ question, options, onChange }) => {
   const handleChange = (event) => {
-    console.log('Dropdown change:', event.target.value);
     onChange(event.target.value);
   };
 

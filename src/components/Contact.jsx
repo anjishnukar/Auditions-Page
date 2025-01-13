@@ -17,7 +17,7 @@ const Contact = () => {
           <FlipLink href="https://www.facebook.com/edc.nitd/">Facebook</FlipLink>
           <FlipLink href="mailto: edc@nitdgp.ac.in">Mail</FlipLink>
         </div>
-        <hr class="h-px my-4 bg-gray-200 border-0 md:hidden"></hr>
+        <hr className="h-px my-4 bg-gray-200 border-0 md:hidden"></hr>
         <div className='font-raleway md:text-xl text-gray-500'>
           <div className='font-raleway font-bold text-4xl py-8 text-white hidden md:block'>Contact</div>
           <div className=''>Entrepreneurship Development Cell</div>
