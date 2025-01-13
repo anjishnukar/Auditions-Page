@@ -23,6 +23,7 @@ const Navbar = () => {
       }}
       className="fixed left-0 right-0 top-10 mx-auto flex max-w-screen w-fit rounded-full border border-gray-700 shadow-lg shadow-black bg-gray-800/50 bg-clip-padding backdrop-filter backdrop-blur-md z-10"
     >
+      <img src="https://edcnitd.co.in/static/img/favicon.ico" alt="Icon" className="h-7 md:h-12 px-3"></img>
       <Tab setPosition={setPosition} address={"/"}>Home</Tab>
       <Tab setPosition={setPosition} address={"https://edcnitd.co.in"}>EDC</Tab>
       <Tab setPosition={setPosition} address={isClubMember ? "/admin" : "/quiz"}>
