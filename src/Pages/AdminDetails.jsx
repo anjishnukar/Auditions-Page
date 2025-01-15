@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getInducteeDetailsById, getComments, postComments, patchColor, getQuizRespones, likeInductee } from '@/services/api';
+import { getInducteeDetailsById, getComments, postComments, patchColor, getQuizRespones} from '@/services/api';
 import { jwtDecode } from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import InducteeCard from '@/components/InducteeCard';
