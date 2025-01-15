@@ -58,7 +58,7 @@ const AdminPage = () => {
                 <div className="w-8 h-8 bg-orange-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(4)}></div>
             </div>
             <div className="text-white font-bold font-mono bg-black border border-violet-900 py-1 px-3 rounded-lg my-3">Total number of responses: {count}</div>
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-center gap-x-5">
                 {
                     inductees.filter((inducteeDetails) => {
                         return search.toLowerCase() === ''

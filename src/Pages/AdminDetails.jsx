@@ -86,28 +86,31 @@ const AdminDetails = () => {
     }
 
     return (
-        <div className="bg-gray-900 flex flex-col items-center justify-start min-h-screen p-5">
-            <h1 className="font-anton text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Student Details</h1>
+        <div className="bg-gray-900 flex flex-col items-center justify-start min-h-screen p-5 font-poppins">
+            <h1 className="font-raleway font-extrabold text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Student Details</h1>
             <Link to="/admin" className='text-white underline underline-offset-4 justify-start'>← Back</Link>
-            <div className="flex flex-wrap w-full max-w-6xl my-5">
-                <div className="w-full md:w-1/2">
-                    <InducteeCard color={color} inducteeDetails={studentDetails} viewProfile={false} />
-                </div>
-                <div className="w-full md:w-1/2 bg-slate-50 p-5 rounded-lg">
-                    <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
-                    <div>
-                        {studentResponses.map((response, index) => (
-                            <div key={index} className="bg-gray-200 p-2 rounded mb-2">
-                                <span className='text-slate-800 font-bold'>{response.question}</span> {response.answer}
-                            </div>
-                        ))}
+            <div className="flex flex-col w-full max-w-6xl my-5">
+                <div className='flex flex-col md:flex-row'>
+                    <div className="flex flex-1 m-3 items-center justify-center">
+                        <InducteeCard color={color} inducteeDetails={studentDetails} viewProfile={false} />
+                    </div>
+                    <div className="flex-1 m-3 bg-gray-400 p-5 rounded-lg">
+                        <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
+                        <div>
+                            {studentResponses.map((response, index) => (
+                                <div key={index} className="bg-gray-300 p-2 rounded mb-2">
+                                    <span className='text-slate-800 font-bold'>{response.question}</span> {response.answer}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className="w-full md:w-1/2 bg-slate-50 p-5 rounded-lg">
+                <div className='flex flex-col md:flex-row'>
+                <div className="flex-1 bg-gray-400 p-5 rounded-lg m-3">
                     <h2 className="text-2xl font-bold mb-4">Comments</h2>
                     <div className="mb-4">
                         <textarea
-                            className="w-full p-2 border rounded resize-none"
+                            className="w-full p-2 border rounded resize-none bg-gray-200"
                             rows="3"
                             placeholder="Type your comment here..."
                             value={newComment}
@@ -116,36 +119,38 @@ const AdminDetails = () => {
                         />
                         <div className="flex flex-wrap space-x-2 mt-2">
                             <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                                className="px-4 py-2 m-2 bg-blue-500 text-white rounded"
                                 onClick={handleAddComment}
                             >
                                 Submit
                             </button>
 
-                            <button className='px-4 py-2 bg-gray-500 text-white rounded' onClick={() => updateColor(0)}>Clear</button>
-                            <button className="px-4 py-2 bg-red-500 text-white rounded" onClick={() => updateColor(1)}>Red</button>
-                            <button className="px-4 py-2 bg-yellow-500 text-white rounded" onClick={() => updateColor(2)}>Yellow</button>
-                            <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => updateColor(3)}>Green</button>
-                            <button className='px-4 py-3 bg-orange-500 text-white rounded' onClick={() => updateColor(4)}>Orange</button>
+                            <button className='px-4 py-2 m-2 bg-gray-500 text-white rounded' onClick={() => updateColor(0)}>Clear</button>
+                            <button className="px-4 py-2 m-2 bg-red-500 text-white rounded-full" onClick={() => updateColor(1)}>Red</button>
+                            <button className="px-4 py-2 m-2 bg-yellow-500 text-white rounded-full" onClick={() => updateColor(2)}>Yellow</button>
+                            <button className="px-4 py-2 m-2 bg-green-500 text-white rounded-full" onClick={() => updateColor(3)}>Green</button>
+                            <button className='px-4 py-3 m-2 bg-orange-500 text-white rounded-full' onClick={() => updateColor(4)}>Orange</button>
                         </div>
                     </div>
                     <div>
                         {comments.map((comment, index) => (
-                            <div key={index} className="bg-gray-200 p-2 rounded mb-2">
+                            <div key={index} className="bg-gray-300 p-2 rounded mb-2">
                                 <span className='text-slate-800 font-bold'>{comment.by}</span> {comment.comment}
                             </div>
                         ))}
                     </div>
+                
                 </div>
-                <div className="w-full md:w-1/2 bg-slate-50 p-5 rounded-lg">
+                <div className="flex-1 bg-gray-400 p-5 rounded-lg m-3">
                     <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
                     <div>
                         {studentResponses.map((response, index) => (
-                            <div key={index} className="mb-2">
+                            <div key={index} className="bg-gray-300 p-2 rounded mb-2">
                                 <span className='text-slate-800 font-bold'>{response.question}</span> {response.answer}
                             </div>
                         ))}
                     </div>
+                </div>
                 </div>
 
             </div>
