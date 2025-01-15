@@ -9,6 +9,7 @@ import { getInducteeDetails } from "@/services/api";
 const AdminPage = () => {
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("full_name");
+    const [count, setCount] = useState(0);
     const [color, setColor] = useState(0);
 
     const [inductees, setInductees] = useState([]);
@@ -20,7 +21,9 @@ const AdminPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await getInducteeDetails();
-            setInductees(response);
+            const inducteeDetails = response.filter((inducteeDetails) => inducteeDetails.full_name.length !== 0);
+            setInductees(inducteeDetails);
+            setCount(inducteeDetails.length);
         };
         fetchData();
     }, []);
@@ -43,17 +46,19 @@ const AdminPage = () => {
                         <SelectItem value="department">Department</SelectItem>
                         <SelectItem value="phone_number">Phone Number</SelectItem>
                         <SelectItem value="registration_no">Registration Number</SelectItem>
-                        <SelectItem value="domain">Domain</SelectItem>
+                        <SelectItem value="domains">Domain</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
             <div className="flex space-x-6 my-4">
-                <div className="w-8 h-8 bg-red-600 p-2 rounded-full border-4" onClick={() => handleColor(1)}></div>
-                <div className="w-8 h-8 bg-green-600 p-2 rounded-full border-4" onClick={() => handleColor(2)}></div>
-                <div className="w-8 h-8 bg-yellow-400 p-2 rounded-full border-4" onClick={() => handleColor(3)}></div>
-                <div className="w-8 h-8 bg-orange-500 p-2 rounded-full border-4" onClick={() => handleColor(4)}></div>
+                <div className="w-8 h-8 bg-black-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(0)}></div>
+                <div className="w-8 h-8 bg-red-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(1)}></div>
+                <div className="w-8 h-8 bg-yellow-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(2)}></div>
+                <div className="w-8 h-8 bg-green-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(3)}></div>
+                <div className="w-8 h-8 bg-orange-600 p-2 rounded-full border-4 cursor-pointer" onClick={() => handleColor(4)}></div>
             </div>
-            <div className="flex flex-wrap items-center space-x-5">
+            <div className="text-white font-bold font-mono bg-black border border-violet-900 py-1 px-3 rounded-lg my-3">Total number of responses: {count}</div>
+            <div className="flex flex-wrap justify-center">
                 {
                     inductees.filter((inducteeDetails) => {
                         return search.toLowerCase() === ''

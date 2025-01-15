@@ -1,6 +1,4 @@
 import axiosInstance from "./axiosInstance";
-import mockData from "@/lib/mock_data";
-import mockQuestions from "@/lib/mock_question";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -25,7 +23,7 @@ export const patchInductee = async (fullName, rollNumber, department, gender, ye
     try {
         const token = getAccessToken();
         const studentId = jwtDecode(token).student_id;
-        const response = await axiosInstance.patch(`${API_BASE_URL}/details/${studentId}`, { full_name: fullName, rollnumber: rollNumber, department, gender, year, registration_no: registrationNumber, phone_number: phoneNumber , place, domains});
+        const response = await axiosInstance.patch(`${API_BASE_URL}/details/${studentId}`, { full_name: fullName, rollnumber: rollNumber, department, gender, year, registration_no: registrationNumber, phone_number: phoneNumber, place, domains });
         return response.data;
     } catch (error) {
         const errorObject = error.response.data;
@@ -71,11 +69,17 @@ export const login = async (username, password) => {
     }
 };
 
-export const quizResponses = async (student_id) => {
+export const getQuizRespones = async (student_id) => {
     try {
-        const response = await axiosInstance.post(`${API_BASE_URL}/responses`);
-        console.log(response.data.filter((response) => response.student_id === student_id));
-        return response.data;
+        const response = await axiosInstance.get(`${API_BASE_URL}/responses/${student_id}`);
+        const questions = await getQuizQuestions();
+
+        const responses = response.data.map((response) => {
+            const question = questions.find((question) => question.id === response.question);
+            return { ...response, question: question.question };
+        });
+
+        return responses;
     } catch (error) {
         throw new Error(error.response.data.message || 'Quiz responses failed');
     }
@@ -93,7 +97,6 @@ export const postResponse = async (question, answer, student_id) => {
 export const getComments = async (studentId) => {
     try {
         const response = await axiosInstance.get(`${API_BASE_URL}/comments/${studentId}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         throw new Error(error.response.data.message || 'Comments failed');
