@@ -91,8 +91,15 @@ const AdminDetails = () => {
             <Link to="/admin" className='text-white underline underline-offset-4 justify-start'>← Back</Link>
             <div className="flex flex-col w-full max-w-6xl my-5">
                 <div className='flex flex-col md:flex-row'>
-                    <div className="flex flex-1 m-3 items-center justify-center">
+                    <div className="flex flex-col flex-1 m-3 items-center justify-center">
                         <InducteeCard color={color} inducteeDetails={studentDetails} viewProfile={false} />
+                        <div className='flex flex-row'>
+                            <button className="px-4 py-2 m-2 bg-red-500 text-white rounded-full" onClick={() => updateColor(1)}>Red</button>
+                            <button className="px-4 py-2 m-2 bg-yellow-500 text-white rounded-full" onClick={() => updateColor(2)}>Yellow</button>
+                            <button className="px-4 py-2 m-2 bg-green-500 text-white rounded-full" onClick={() => updateColor(3)}>Green</button>
+                            <button className='px-4 py-3 m-2 bg-orange-500 text-white rounded-full' onClick={() => updateColor(4)}>Orange</button>
+                        </div>
+                        <button className='px-4 py-2 m-2 bg-gray-500 text-white rounded' onClick={() => updateColor(0)}>Clear</button>
                     </div>
                     <div className="flex-1 m-3 bg-gray-400 p-5 rounded-lg">
                         <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
@@ -124,12 +131,6 @@ const AdminDetails = () => {
                             >
                                 Submit
                             </button>
-
-                            <button className='px-4 py-2 m-2 bg-gray-500 text-white rounded' onClick={() => updateColor(0)}>Clear</button>
-                            <button className="px-4 py-2 m-2 bg-red-500 text-white rounded-full" onClick={() => updateColor(1)}>Red</button>
-                            <button className="px-4 py-2 m-2 bg-yellow-500 text-white rounded-full" onClick={() => updateColor(2)}>Yellow</button>
-                            <button className="px-4 py-2 m-2 bg-green-500 text-white rounded-full" onClick={() => updateColor(3)}>Green</button>
-                            <button className='px-4 py-3 m-2 bg-orange-500 text-white rounded-full' onClick={() => updateColor(4)}>Orange</button>
                         </div>
                     </div>
                     <div>
@@ -140,16 +141,6 @@ const AdminDetails = () => {
                         ))}
                     </div>
                 
-                </div>
-                <div className="flex-1 bg-gray-400 p-5 rounded-lg m-3">
-                    <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
-                    <div>
-                        {studentResponses.map((response, index) => (
-                            <div key={index} className="bg-gray-300 p-2 rounded mb-2">
-                                <span className='text-slate-800 font-bold'>{response.question}</span> {response.answer}
-                            </div>
-                        ))}
-                    </div>
                 </div>
                 </div>
 

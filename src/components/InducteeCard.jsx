@@ -13,7 +13,7 @@ const InducteeCard = ({ inducteeDetails, handleLike, viewProfile = true, likeCou
 
     const textColorClasses = {
         0: "text-white",
-        1: "text-red-500",
+        1: "text-red-600",
         2: "text-yellow-500",
         3: "text-green-500",
         4: "text-orange-500",
