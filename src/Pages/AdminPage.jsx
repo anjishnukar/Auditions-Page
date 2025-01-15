@@ -28,7 +28,7 @@ const AdminPage = () => {
     return (
         <div className="bg-gray-900 flex flex-col items-center justify-start min-h-screen p-5">
             {/* <Navbar /> */}
-            <h1 className="font-anton text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Admin Page</h1>
+            <h1 className="font-raleway font-extrabold text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Admin Page</h1>
             <div className="flex w-full max-w-lg items-center space-x-1 my-5">
                 <Input type="email" placeholder="Search candidates" className="bg-slate-50 h-10 text-lg"
                     onChange={(e) => setSearch(e.target.value)}
@@ -50,8 +50,8 @@ const AdminPage = () => {
             <div className="flex space-x-6 my-4">
                 <div className="w-8 h-8 bg-red-600 p-2 rounded-full border-4" onClick={() => handleColor(1)}></div>
                 <div className="w-8 h-8 bg-green-600 p-2 rounded-full border-4" onClick={() => handleColor(2)}></div>
-                <div className="w-8 h-8 bg-yellow-600 p-2 rounded-full border-4" onClick={() => handleColor(3)}></div>
-                <div className="w-8 h-8 bg-black-600 p-2 rounded-full border-4" onClick={() => handleColor(4)}></div>
+                <div className="w-8 h-8 bg-yellow-400 p-2 rounded-full border-4" onClick={() => handleColor(3)}></div>
+                <div className="w-8 h-8 bg-orange-500 p-2 rounded-full border-4" onClick={() => handleColor(4)}></div>
             </div>
             <div className="flex flex-wrap items-center space-x-5">
                 {

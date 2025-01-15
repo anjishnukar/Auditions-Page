@@ -43,7 +43,7 @@ const InducteeCard = ({ inducteeDetails, viewProfile = true }) => {
 
     return (
         <div
-            className="bg-white p-4 rounded-lg shadow-md my-2"
+            className="bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100p-1 text-white p-4 w-96 rounded-lg shadow-lg my-6"
         >
             <div className="flex items-center mb-2">
                 <IdenticonImage seed={inducteeDetails?.full_name} />

@@ -27,8 +27,8 @@ const QuizPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // console.log('%c ___________  _____ \n|  ___|  _  \/  __ \\\n| |__ | | | || /  \/\n|  __|| | | || |    \n| |___| |/ / | \\__/\\\n\\____/|___/   \\____/', 'font-family: monospace; color: green; font-size: 16px;');
-        // console.log('%c Congrats you found this! Contact Anjishnu or Ayush to let them know.', 'font-family: monospace; color: green; font-size: 12px; font-weight: bold;');
+        console.log('%c ___________  _____ \n|  ___|  _  \/  __ \\\n| |__ | | | || /  \/\n|  __|| | | || |    \n| |___| |/ / | \\__/\\\n\\____/|___/   \\____/', 'font-family: monospace; color: green; font-size: 16px;');
+        console.log('%c Congrats you found this! Contact Anjishnu or Ayush to let them know.', 'font-family: monospace; color: green; font-size: 12px; font-weight: bold;');
 
         const storedToken = localStorage.getItem('accessToken');
         if (storedToken) {
