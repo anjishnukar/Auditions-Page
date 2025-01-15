@@ -4,7 +4,7 @@ import Terminal from "./Terminal";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-const InducteeCard = ({ inducteeDetails, handleLike, viewProfile = true, likeCount = 0 }) => {
+const InducteeCard = ({ inducteeDetails, handleLike, viewProfile = true }) => {
     const { profile_picture, round, like, user, is_club_member, ...filteredInductees } = inducteeDetails;
 
     const terminalLines = [
@@ -29,7 +29,7 @@ const InducteeCard = ({ inducteeDetails, handleLike, viewProfile = true, likeCou
 
                 {viewProfile ? (<div className="ml-auto flex items-center">
                     <Link to={`${filteredInductees.id}`}>
-                        <FaArrowUp className="text-blue-800 text-2xl rotate-45" />
+                        <FaArrowUp className="text-blue-400 text-2xl rotate-45 text-border-white" />
                     </Link>
                 </div>) :
                     // <button className="ml-2 bg-blue-500 text-white px-2 py-1 rounded">

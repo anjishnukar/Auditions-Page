@@ -88,10 +88,13 @@ const AdminDetails = () => {
     return (
         <div className="bg-gray-900 flex flex-col items-center justify-start min-h-screen p-5 font-poppins">
             <h1 className="font-raleway font-extrabold text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Student Details</h1>
-            <Link to="/admin" className='text-white underline underline-offset-4 justify-start'>← Back</Link>
+                <div className='flex flex-row'>
+                <Link to="/admin" className='text-white underline underline-offset-4 justify-start m-3'>← Back</Link>
+                <a href="#Comments" className='text-white underline underline-offset-4 justify-start m-3'>Comments</a>
+                </div>
             <div className="flex flex-col w-full max-w-6xl my-5">
                 <div className='flex flex-col md:flex-row'>
-                    <div className="flex flex-col flex-1 m-3 items-center justify-center">
+                    <div className="flex flex-col flex-1 m-3 items-center justify-start">
                         <InducteeCard color={color} inducteeDetails={studentDetails} viewProfile={false} />
                         <div className='flex flex-row'>
                             <button className="px-4 py-2 m-2 bg-red-500 text-white rounded-full" onClick={() => updateColor(1)}>Red</button>
@@ -113,7 +116,7 @@ const AdminDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row'>
-                <div className="flex-1 bg-gray-400 p-5 rounded-lg m-3">
+                <div id="Comments" className="flex-1 bg-gray-400 p-5 rounded-lg m-3">
                     <h2 className="text-2xl font-bold mb-4">Comments</h2>
                     <div className="mb-4">
                         <textarea
