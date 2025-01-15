@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getInducteeDetailsById, getComments, postComments, patchColor, getQuizRespones, getQuizQuestions } from '@/services/api';
+import { getInducteeDetailsById, getComments, postComments, patchColor, getQuizRespones, likeInductee } from '@/services/api';
 import { jwtDecode } from 'jwt-decode';
+import { Link } from 'react-router-dom';
 import InducteeCard from '@/components/InducteeCard';
+import ComingSoon from './ComingSoon';
 
 const AdminDetails = () => {
     const { id } = useParams();
@@ -80,13 +82,14 @@ const AdminDetails = () => {
     };
 
     if (!studentDetails) {
-        return <div>Loading...</div>;
+        return <ComingSoon text="Loading student details..." />;
     }
 
     return (
         <div className="bg-gray-900 flex flex-col items-center justify-start min-h-screen p-5">
             <h1 className="font-anton text-4xl bg-gradient-to-br from-pink-500 to-purple-500 bg-clip-text text-transparent">Student Details</h1>
-            <div className="flex flex-col md:flex-row w-full max-w-4xl space-y-5 md:space-y-0 md:space-x-10 my-5">
+            <Link to="/admin" className='text-white underline underline-offset-4 justify-start'>← Back</Link>
+            <div className="flex flex-wrap w-full max-w-6xl my-5">
                 <div className="w-full md:w-1/2">
                     <InducteeCard color={color} inducteeDetails={studentDetails} viewProfile={false} />
                 </div>
@@ -109,6 +112,7 @@ const AdminDetails = () => {
                             placeholder="Type your comment here..."
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
+                            maxLength={999}
                         />
                         <div className="flex flex-wrap space-x-2 mt-2">
                             <button
@@ -122,6 +126,7 @@ const AdminDetails = () => {
                             <button className="px-4 py-2 bg-red-500 text-white rounded" onClick={() => updateColor(1)}>Red</button>
                             <button className="px-4 py-2 bg-yellow-500 text-white rounded" onClick={() => updateColor(2)}>Yellow</button>
                             <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => updateColor(3)}>Green</button>
+                            <button className='px-4 py-3 bg-orange-500 text-white rounded' onClick={() => updateColor(4)}>Orange</button>
                         </div>
                     </div>
                     <div>
@@ -132,6 +137,17 @@ const AdminDetails = () => {
                         ))}
                     </div>
                 </div>
+                <div className="w-full md:w-1/2 bg-slate-50 p-5 rounded-lg">
+                    <h2 className="text-2xl font-bold mb-4">Quiz Responses</h2>
+                    <div>
+                        {studentResponses.map((response, index) => (
+                            <div key={index} className="mb-2">
+                                <span className='text-slate-800 font-bold'>{response.question}</span> {response.answer}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </div>
     );

@@ -4,27 +4,28 @@ import Terminal from "./Terminal";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-const InducteeCard = ({ inducteeDetails, viewProfile = true }) => {
+const InducteeCard = ({ inducteeDetails, handleLike, viewProfile = true, likeCount = 0 }) => {
     const { profile_picture, round, like, user, is_club_member, ...filteredInductees } = inducteeDetails;
 
     const terminalLines = [
-        JSON.stringify(filteredInductees, null, 2)
+        JSON.stringify(filteredInductees, null, 2),
     ];
 
     const textColorClasses = {
+        0: "text-black",
         1: "text-red-500",
         2: "text-yellow-500",
         3: "text-green-500",
-        4: "text-black",
+        4: "text-orange-500",
     };
 
     return (
         <div
-            className="bg-white p-4 rounded-lg shadow-md my-2 max-w-6xl"
+            className="bg-white p-4 rounded-lg shadow-md max-w-6xl m-2"
         >
             <div className="flex items-center mb-2">
                 <IdenticonImage seed={filteredInductees.full_name} />
-                <Link to={`${filteredInductees.id}`}><h2 className={`font-bold text-2xl ml-4 ${textColorClasses[filteredInductees.color]}`}>{filteredInductees.full_name}</h2></Link>
+                <Link to={`${filteredInductees.id}`}><h2 className={`font-bold font-raleway text-2xl ml-4 ${textColorClasses[filteredInductees.color]}`}>{filteredInductees.full_name}</h2></Link>
 
                 {viewProfile ? (<div className="ml-auto flex items-center">
                     <Link to={`${filteredInductees.id}`}>
