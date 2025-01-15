@@ -22,7 +22,9 @@ const AdminDetails = () => {
         const fetchAdminDetails = async () => {
             const storedToken = localStorage.getItem('accessToken');
             const decodedToken = jwtDecode(storedToken);
-            const admin = await getInducteeDetailsById(decodedToken.user_id);
+            console.log("decodedToken", decodedToken)
+            const admin = await getInducteeDetailsById(decodedToken.student_id);
+            console.log("admin: ", admin)
             setAdminDetails({ ...admin, username: decodedToken.username });
         };
 
@@ -53,17 +55,19 @@ const AdminDetails = () => {
 
     useEffect(() => {
         if (adminDetails) {
+            console.log("yes", adminDetails, comments)
             const filteredComments = comments.filter(comment => comment.year <= adminDetails.year);
+            console.log(comments, filteredComments);
             setComments(filteredComments);
         }
-    }, []);
+    }, [adminDetails]);
 
     const handleAddComment = async () => {
         if (newComment.trim()) {
             try {
                 const year = adminDetails.year;
                 const round = 1; // Assuming round 1 for now, adjust as needed
-                const postedComment = await postComments(studentId, newComment, adminDetails.username, year + 1, round);
+                const postedComment = await postComments(studentId, newComment, adminDetails.username, year, round);
                 setComments([...comments, postedComment]);
                 setNewComment("");
             } catch (error) {

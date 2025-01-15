@@ -79,8 +79,8 @@ const QuizPage = () => {
             };
 
             const yearMap = {
-                "1st year": 1,
-                "2nd year": 2
+                "1st Year": 1,
+                "2nd Year": 2
             };
 
             const genderMap = {
