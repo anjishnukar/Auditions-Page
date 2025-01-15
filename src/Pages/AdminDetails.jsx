@@ -22,14 +22,13 @@ const AdminDetails = () => {
         const fetchAdminDetails = async () => {
             const storedToken = localStorage.getItem('accessToken');
             const decodedToken = jwtDecode(storedToken);
-            console.log("decodedToken", decodedToken)
             const admin = await getInducteeDetailsById(decodedToken.student_id);
-            console.log("admin: ", admin)
             setAdminDetails({ ...admin, username: decodedToken.username });
         };
 
         const fetchComments = async () => {
             const fetchedComments = await getComments(id);
+            fetchedComments.reverse();
             setComments(fetchedComments);
         };
 
@@ -55,9 +54,8 @@ const AdminDetails = () => {
 
     useEffect(() => {
         if (adminDetails) {
-            console.log("yes", adminDetails, comments)
             const filteredComments = comments.filter(comment => comment.year <= adminDetails.year);
-            console.log(comments, filteredComments);
+            console.log(comments);
             setComments(filteredComments);
         }
     }, [adminDetails]);
@@ -68,7 +66,7 @@ const AdminDetails = () => {
                 const year = adminDetails.year;
                 const round = 1; // Assuming round 1 for now, adjust as needed
                 const postedComment = await postComments(studentId, newComment, adminDetails.username, year, round);
-                setComments([...comments, postedComment]);
+                setComments([postedComment, ...comments]);
                 setNewComment("");
             } catch (error) {
                 console.error("Failed to post comment:", error.message);
@@ -143,7 +141,8 @@ const AdminDetails = () => {
                     <div>
                         {comments.map((comment, index) => (
                             <div key={index} className="bg-gray-300 p-2 rounded mb-2">
-                                <span className='text-slate-800 font-bold'>{comment.by}</span> {comment.comment}
+                                <span className='text-slate-800 font-bold'>{comment.by} </span>
+                                <span className='text-gray-400 text-sm font-bold'>{comment.date} </span><br/> {comment.comment}
                             </div>
                         ))}
                     </div>
