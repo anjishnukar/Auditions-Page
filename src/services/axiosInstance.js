@@ -4,7 +4,7 @@ const API_BASE_URL = "https://hult.edcnitd.co.in";
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL, 
-  timeout: 10000, // Optional: Set a timeout for requests
+  timeout: 30000, // Optional: Set a timeout for requests
 });
 
 // Add a request interceptor to include the token
